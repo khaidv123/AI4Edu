@@ -1,0 +1,31 @@
+stage_analysis:
+  description: >
+    <>
+  expected_output: >
+    <>
+  agent: stage_manager
+
+
+create_thoughts:
+  description: >
+    <>
+  expected_output: >
+    <>
+  agent: inner_thinker
+
+
+evaluate_thoughts:
+  description: >
+    <>
+  expected_output: >
+    <>
+  agent: thoughts_evaluator
+
+
+speak:
+  description: >
+    <>
+  expected_output: >
+    <>
+  agent: classmate_speaker
+

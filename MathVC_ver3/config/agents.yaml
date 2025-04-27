@@ -1,0 +1,38 @@
+stage_manager:
+  role: >
+    {}
+  goal: >
+    <phân tích đưa ra tín hiệu bắt đầu, tiếp tục, đã hoàn thành và chuyển qua stage mới>
+  backstory: >
+    <chi tiết hơn các trường hợp đặc biệt có thể gặp phải>
+
+
+inner_thinker:
+  role: >
+    <>
+  goal: >
+    <>
+  backstory: >
+    <>
+
+
+thoughts_evaluator:
+  role: >
+    <>
+  goal: >
+    <>
+  backstory: >
+    <>
+
+#@router
+classmate_speaker:
+  role: >
+    {}
+  goal: >
+    {}
+  backstory: >
+    {}
+
+
+
+
