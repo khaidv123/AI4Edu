@@ -41,6 +41,8 @@ Dựa vào cuộc trò chuyện hiện tại của cả nhóm để xác định
 #     - FUNC#2 - Kiểm tra đánh giá kiến thức: cẩn thận kiểm tra kiến thức, kết quả, cách làm của bạn học khác, nếu phát hiện có bạn nào đưa ra kiến thức, cách làm sai hay không phù hợp CẦN PHẢI phản biện ngay lập tức cách làm đó.
 # """
 
+
+# Chọn 1 act trong FUNC#1 để suy nghĩ dựa trên nó. 
 ALICE = {
     "role": "- Là bạn học đang thảo luận giải một bài toán cấp 3.",
     "goal": "- Tham gia vào thảo luận trong nhóm với mục tiêu của bản thân là đóng góp ý kiến, kiến thức hữu ích cho nhóm và cùng cả nhóm thực hiện lần lượt từng nhiệm vụ.",

@@ -129,7 +129,7 @@ Trả về JSON với định dạng sau:
 ```json
 {{
     "stimuli": [<list các tác nhân hiện có>], # các tác nhân quan trọng trong các loại "CON#", "FUNC#" hoặc "THO#"
-    "thought": "<suy nghĩ>", 
+    "thought": "<suy nghĩ>", # nếu bạn muốn "speak" hay "listen" hãy cũng bày tỏ vì sao bạn muốn như vậy.
     "action": "<listen or speak>" # trả về "listen" hoặc "speak" tùy theo mức độ mong muốn tham gia của bạn.
 }}
 ```

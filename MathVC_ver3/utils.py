@@ -9,6 +9,7 @@ import os
 import time
 from typing import List, Tuple, Dict, Any
 import re
+import copy
 
 
 USER_NAME = "Khải"
@@ -36,7 +37,7 @@ AI_NAMES = ["Alice", "Bob", "Charlie"]
 #     return response.choices[0].message.content
 
 
-gemini = LLM(provider="Google", model="gemma-3-27b-it", temperature = 0.5)
+gemini = LLM(provider="Google", model="gemini-2.0-flash", temperature = 0.5)
 def llm(prompt):
     return gemini.generate(prompt)
 
@@ -292,3 +293,54 @@ def clean_ai_response(text):
     """Removes <think>...</think> blocks from AI responses."""
     return re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
 
+
+def print_history(history, CURRENT_STAGE):
+    print("\n--- LỊCH SỬ HỘI THOẠI ---")
+    if not history:
+        print("(Lịch sử trống)")
+    for turn in history:
+        print(f"{turn['num']}. {turn['name']}: {repr(turn['utterance'])}")
+    print("\n---------------------------")
+    print(f"--- Giai đoạn hiện tại: {CURRENT_STAGE} ---")
+    print("---------------------------")
+
+
+def update_history(ai_response, history):
+    HISTORY = copy.deepcopy(history)
+
+    AI_thoughts = ai_response['thoughts']
+    evaluator = ai_response['evaluator']
+
+    inner_thoughts = []
+
+    for ai in evaluator:
+        name = ai['name']
+        internal_score = ai['internal_score']
+        external_score = ai['external_score']
+
+        thought = AI_thoughts[name]['thought']
+        stimuli = AI_thoughts[name]['stimuli']
+
+        t = {
+            "agent_name": name,
+            "inner_thought": thought,
+            "stimuli": stimuli,
+            "intrinsic_motivation": [internal_score, external_score]
+        }
+
+        inner_thoughts.append(t)
+    
+    HISTORY[-1]['thoughts'] = inner_thoughts
+
+
+    # Cập nhật u_i
+    ai_name = ai_response["name"]
+    cleaned_talk = clean_ai_response(ai_response["speak"])
+
+    num = HISTORY[-1]['num'] + 1
+    HISTORY.append({"num" : num,
+                    "name" : ai_name,
+                    "utterance" : cleaned_talk,
+                    "thoughts" : None})
+    
+    return HISTORY
